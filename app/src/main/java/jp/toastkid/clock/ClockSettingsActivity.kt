@@ -12,9 +12,11 @@ import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatDelegate
 import android.text.TextUtils
 import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import jp.toastkid.clock.setting.DataSyncPreferenceFragment
+import jp.toastkid.clock.setting.GeneralPreferenceFragment
+import jp.toastkid.clock.setting.NotificationPreferenceFragment
 
 class ClockSettingsActivity : PreferenceActivity() {
 
@@ -119,88 +121,6 @@ class ClockSettingsActivity : PreferenceActivity() {
         delegate.invalidateOptionsMenu()
     }
 
-    /**
-     * This fragment shows general preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
-     */
-    class GeneralPreferenceFragment : PreferenceFragment() {
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            addPreferencesFromResource(R.xml.pref_general)
-            setHasOptionsMenu(true)
-
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference("example_text"))
-            bindPreferenceSummaryToValue(findPreference("example_list"))
-        }
-
-        override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            val id = item.itemId
-            if (id == android.R.id.home) {
-                startActivity(Intent(activity, ClockSettingsActivity::class.java))
-                return true
-            }
-            return super.onOptionsItemSelected(item)
-        }
-    }
-
-    /**
-     * This fragment shows notification preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
-     */
-    class NotificationPreferenceFragment : PreferenceFragment() {
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            addPreferencesFromResource(R.xml.pref_notification)
-            setHasOptionsMenu(true)
-
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"))
-        }
-
-        override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            val id = item.itemId
-            if (id == android.R.id.home) {
-                startActivity(Intent(activity, ClockSettingsActivity::class.java))
-                return true
-            }
-            return super.onOptionsItemSelected(item)
-        }
-    }
-
-    /**
-     * This fragment shows data and sync preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
-     */
-    class DataSyncPreferenceFragment : PreferenceFragment() {
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            addPreferencesFromResource(R.xml.pref_data_sync)
-            setHasOptionsMenu(true)
-
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference("sync_frequency"))
-        }
-
-        override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            val id = item.itemId
-            if (id == android.R.id.home) {
-                startActivity(Intent(activity, ClockSettingsActivity::class.java))
-                return true
-            }
-            return super.onOptionsItemSelected(item)
-        }
-    }
-
     companion object {
 
         /**
@@ -270,7 +190,7 @@ class ClockSettingsActivity : PreferenceActivity() {
 
          * @see .sBindPreferenceSummaryToValueListener
          */
-        private fun bindPreferenceSummaryToValue(preference: Preference) {
+        fun bindPreferenceSummaryToValue(preference: Preference) {
             // Set the listener to watch for value changes.
             preference.onPreferenceChangeListener = sBindPreferenceSummaryToValueListener
 
