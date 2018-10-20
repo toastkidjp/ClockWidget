@@ -7,6 +7,7 @@
  */
 package jp.toastkid.clock.appwidget
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -15,27 +16,44 @@ import android.content.Intent
 import android.os.PowerManager
 
 /**
+ * This receiver is implemented for updating App-Widget.
+ *
  * @author toastkidjp
  */
 class UpdateReceiver : BroadcastReceiver() {
 
+    @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context?, intent: Intent?) {
         if (context == null) {
             return
         }
-        if ((context.getSystemService(POWER_SERVICE) as? PowerManager)?.isScreenOn == true) {
+
+        if (isScreenOn(context)) {
             SingleWidgetProvider.updateWidget(context, RemoteViewsFactory(context))
         }
     }
 
+    /**
+     * If screen is off, suppress updating for saving battery.
+     *
+     * @param context [Context]
+     */
+    @Suppress("DEPRECATION")
+    private fun isScreenOn(context: Context) =
+            (context.getSystemService(POWER_SERVICE) as? PowerManager)?.isScreenOn == true
+
     companion object {
-        fun makePendingIntent(context: Context): PendingIntent {
-            return PendingIntent.getBroadcast(
-                    context,
-                    1,
-                    Intent(context, UpdateReceiver::class.java),
-                    PendingIntent.FLAG_UPDATE_CURRENT
-            )
-        }
+
+        /**
+         * Make [PendingIntent] for updating app-widget.
+         *
+         * @param context [Context]
+         */
+        fun makePendingIntent(context: Context): PendingIntent = PendingIntent.getBroadcast(
+                context,
+                1,
+                Intent(context, UpdateReceiver::class.java),
+                PendingIntent.FLAG_UPDATE_CURRENT
+        )
     }
 }
