@@ -7,21 +7,77 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Bundle
 import android.preference.*
+import android.support.annotation.LayoutRes
+import android.support.v7.app.ActionBar
+import android.support.v7.app.AppCompatDelegate
 import android.text.TextUtils
+import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 
-class ClockSettingsActivity : AppCompatPreferenceActivity() {
+class ClockSettingsActivity : PreferenceActivity() {
+
+    private val delegate by lazy { AppCompatDelegate.create(this, null) }
+
+    private lateinit var supportActionBar: ActionBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        delegate.installViewFactory()
+        delegate.onCreate(savedInstanceState)
+
+        supportActionBar = delegate.supportActionBar ?: return
+
         setupActionBar()
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        delegate.onPostCreate(savedInstanceState)
     }
 
     /**
      * Set up the [android.app.ActionBar], if the API is available.
      */
     private fun setupActionBar() {
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun getMenuInflater(): MenuInflater {
+        return delegate.menuInflater
+    }
+
+    override fun setContentView(@LayoutRes layoutResID: Int) {
+        delegate.setContentView(layoutResID)
+    }
+
+    override fun setContentView(view: View) {
+        delegate.setContentView(view)
+    }
+
+    override fun setContentView(view: View, params: ViewGroup.LayoutParams) {
+        delegate.setContentView(view, params)
+    }
+
+    override fun addContentView(view: View, params: ViewGroup.LayoutParams) {
+        delegate.addContentView(view, params)
+    }
+
+    override fun onPostResume() {
+        super.onPostResume()
+        delegate.onPostResume()
+    }
+
+    override fun onTitleChanged(title: CharSequence, color: Int) {
+        super.onTitleChanged(title, color)
+        delegate.setTitle(title)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        delegate.onConfigurationChanged(newConfig)
     }
 
     /**
@@ -47,6 +103,20 @@ class ClockSettingsActivity : AppCompatPreferenceActivity() {
                 || GeneralPreferenceFragment::class.java.name == fragmentName
                 || DataSyncPreferenceFragment::class.java.name == fragmentName
                 || NotificationPreferenceFragment::class.java.name == fragmentName
+    }
+
+    override fun onStop() {
+        super.onStop()
+        delegate.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        delegate.onDestroy()
+    }
+
+    override fun invalidateOptionsMenu() {
+        delegate.invalidateOptionsMenu()
     }
 
     /**
