@@ -52,8 +52,15 @@ class UpdateReceiver : BroadcastReceiver() {
         fun makePendingIntent(context: Context): PendingIntent = PendingIntent.getBroadcast(
                 context,
                 1,
-                Intent(context, UpdateReceiver::class.java),
+                makeIntent(context),
                 PendingIntent.FLAG_UPDATE_CURRENT
         )
+
+        /**
+         * Make [Intent] for broadcasting.
+         *
+         * @param context [Context]
+         */
+        fun makeIntent(context: Context) = Intent(context, UpdateReceiver::class.java)
     }
 }

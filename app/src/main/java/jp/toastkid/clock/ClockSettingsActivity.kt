@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import jp.toastkid.clock.setting.time_zone.TimeZoneSettingFragment
+import jp.toastkid.clock.setting.color.ColorSettingFragment
 
 class ClockSettingsActivity : AppCompatActivity() {
 
@@ -14,7 +14,7 @@ class ClockSettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting_top)
 
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, TimeZoneSettingFragment())
+        transaction.replace(R.id.container, ColorSettingFragment())
         transaction.commit()
     }
 
