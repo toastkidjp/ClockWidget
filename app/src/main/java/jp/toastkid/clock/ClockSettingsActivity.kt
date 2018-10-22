@@ -22,7 +22,7 @@ class ClockSettingsActivity : AppCompatActivity() {
 
         fun makeIntent(context: Context): Intent {
             val intent = Intent(context, ClockSettingsActivity::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             return intent
         }
     }
