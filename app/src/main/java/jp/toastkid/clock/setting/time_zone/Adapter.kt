@@ -42,7 +42,7 @@ class Adapter(
     override fun getItemCount() = timeZoneIds.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val timeZone = TimeZone.getTimeZone(timeZoneIds.get(position))
+        val timeZone = TimeZone.getTimeZone(timeZoneIds[position])
         holder.setTitle(timeZone.id)
         holder.setOffset(timeZone.rawOffset)
         holder.setOnClick(View.OnClickListener {
