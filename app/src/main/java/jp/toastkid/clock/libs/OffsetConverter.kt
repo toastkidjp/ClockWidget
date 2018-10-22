@@ -17,11 +17,24 @@ import java.util.concurrent.TimeUnit
 object OffsetConverter {
 
     /**
+     * One hour milliseconds.
+     */
+    private val oneHour = TimeUnit.HOURS.toMillis(1)
+
+    /**
+     * One minute milliseconds.
+     */
+    private val oneMinute = TimeUnit.MINUTES.toMillis(1)
+
+    /**
      * Convert milliseconds offset value to offset string form.
+     * For example, +09:00
      *
      * @param offset Milliseconds
      */
     operator fun invoke(offset: Long): String {
-        return String.format("+%02d:00", (offset / TimeUnit.HOURS.toMillis(1)))
+        val hour = offset / oneHour
+        val minutes = (offset % oneHour) / oneMinute
+        return (if (offset >= 0) "+" else "-") + String.format("%02d:%02d", Math.abs(hour), minutes.toInt())
     }
 }
