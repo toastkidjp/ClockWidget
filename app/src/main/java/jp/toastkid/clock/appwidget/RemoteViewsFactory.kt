@@ -10,6 +10,7 @@ package jp.toastkid.clock.appwidget
 import android.content.Context
 import android.widget.RemoteViews
 import jp.toastkid.clock.R
+import jp.toastkid.clock.setting.PreferenceApplier
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,8 +31,11 @@ object RemoteViewsFactory {
     operator fun invoke(context: Context): RemoteViews {
         val removeViews = RemoteViews(context.packageName, APPWIDGET_LAYOUT_ID)
         removeViews.setOnClickPendingIntent(R.id.background, PendingIntentFactory(context))
-        removeViews.setTextViewText(R.id.date_time, DATE_FORMAT.get().format(Date()))
-        removeViews.setTextViewText(R.id.timezone, TimeZone.getDefault().id)
+        val currentTimeZone = PreferenceApplier(context).currentTimeZone()
+        val dateFormat = DATE_FORMAT.get()
+        dateFormat.timeZone = currentTimeZone
+        removeViews.setTextViewText(R.id.date_time, dateFormat.format(Date()))
+        removeViews.setTextViewText(R.id.timezone, currentTimeZone.id)
         println(Date())
         return removeViews
     }

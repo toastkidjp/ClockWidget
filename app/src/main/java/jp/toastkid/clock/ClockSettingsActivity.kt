@@ -6,119 +6,24 @@ import android.content.res.Configuration
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Bundle
-import android.preference.*
-import android.support.annotation.LayoutRes
-import android.support.v7.app.ActionBar
-import android.support.v7.app.AppCompatDelegate
+import android.preference.ListPreference
+import android.preference.Preference
+import android.preference.PreferenceManager
+import android.preference.RingtonePreference
+import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
-import android.view.MenuInflater
-import android.view.View
-import android.view.ViewGroup
-import jp.toastkid.clock.setting.DataSyncPreferenceFragment
-import jp.toastkid.clock.setting.GeneralPreferenceFragment
-import jp.toastkid.clock.setting.NotificationPreferenceFragment
+import jp.toastkid.clock.setting.time_zone.TimeZoneSettingFragment
 
-class ClockSettingsActivity : PreferenceActivity() {
-
-    private val delegate by lazy { AppCompatDelegate.create(this, null) }
-
-    private lateinit var supportActionBar: ActionBar
+class ClockSettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        delegate.installViewFactory()
-        delegate.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_setting_top)
 
-        supportActionBar = delegate.supportActionBar ?: return
-
-        setupActionBar()
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-        delegate.onPostCreate(savedInstanceState)
-    }
-
-    /**
-     * Set up the [android.app.ActionBar], if the API is available.
-     */
-    private fun setupActionBar() {
-        supportActionBar.setDisplayHomeAsUpEnabled(true)
-    }
-
-    override fun getMenuInflater(): MenuInflater {
-        return delegate.menuInflater
-    }
-
-    override fun setContentView(@LayoutRes layoutResID: Int) {
-        delegate.setContentView(layoutResID)
-    }
-
-    override fun setContentView(view: View) {
-        delegate.setContentView(view)
-    }
-
-    override fun setContentView(view: View, params: ViewGroup.LayoutParams) {
-        delegate.setContentView(view, params)
-    }
-
-    override fun addContentView(view: View, params: ViewGroup.LayoutParams) {
-        delegate.addContentView(view, params)
-    }
-
-    override fun onPostResume() {
-        super.onPostResume()
-        delegate.onPostResume()
-    }
-
-    override fun onTitleChanged(title: CharSequence, color: Int) {
-        super.onTitleChanged(title, color)
-        delegate.setTitle(title)
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        delegate.onConfigurationChanged(newConfig)
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    override fun onIsMultiPane(): Boolean {
-        return isXLargeTablet(this)
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    override fun onBuildHeaders(target: List<PreferenceActivity.Header>) {
-        loadHeadersFromResource(R.xml.pref_headers, target)
-    }
-
-    /**
-     * This method stops fragment injection in malicious applications.
-     * Make sure to deny any unknown fragments here.
-     */
-    override fun isValidFragment(fragmentName: String): Boolean {
-        return PreferenceFragment::class.java.name == fragmentName
-                || GeneralPreferenceFragment::class.java.name == fragmentName
-                || DataSyncPreferenceFragment::class.java.name == fragmentName
-                || NotificationPreferenceFragment::class.java.name == fragmentName
-    }
-
-    override fun onStop() {
-        super.onStop()
-        delegate.onStop()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        delegate.onDestroy()
-    }
-
-    override fun invalidateOptionsMenu() {
-        delegate.invalidateOptionsMenu()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, TimeZoneSettingFragment())
+        transaction.commit()
     }
 
     companion object {
