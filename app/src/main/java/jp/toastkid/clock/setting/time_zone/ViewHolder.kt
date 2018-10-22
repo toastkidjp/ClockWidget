@@ -11,7 +11,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
 import jp.toastkid.clock.R
-import java.util.concurrent.TimeUnit
+import jp.toastkid.clock.libs.OffsetConverter
 
 /**
  * @author toastkidjp
@@ -22,9 +22,8 @@ class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         view.findViewById<TextView>(R.id.title).setText(title)
     }
 
-    fun setOffset(offset: Int) {
-        val format = String.format("+%02d:00", (offset / TimeUnit.HOURS.toMillis(1)))
-        view.findViewById<TextView>(R.id.offset).setText(format)
+    fun setOffset(offset: Long) {
+        view.findViewById<TextView>(R.id.offset).setText(OffsetConverter(offset))
     }
 
     fun setOnClick(listener: View.OnClickListener) {

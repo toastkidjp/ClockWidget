@@ -44,7 +44,7 @@ class Adapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val timeZone = TimeZone.getTimeZone(timeZoneIds[position])
         holder.setTitle(timeZone.id)
-        holder.setOffset(timeZone.rawOffset)
+        holder.setOffset(timeZone.rawOffset.toLong())
         holder.setOnClick(View.OnClickListener {
             preferences.setTimeZone(timeZone.id)
             onClick()

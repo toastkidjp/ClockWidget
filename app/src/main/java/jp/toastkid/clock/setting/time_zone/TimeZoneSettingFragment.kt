@@ -19,6 +19,7 @@ import android.view.ViewGroup
 import jp.toastkid.clock.R
 import jp.toastkid.clock.appwidget.RemoteViewsFactory
 import jp.toastkid.clock.appwidget.SingleWidgetProvider
+import jp.toastkid.clock.libs.OffsetConverter
 import jp.toastkid.clock.setting.PreferenceApplier
 import kotlinx.android.synthetic.main.fragment_time_zone.*
 import kotlinx.android.synthetic.main.item_time_zone.*
@@ -73,7 +74,7 @@ class TimeZoneSettingFragment : Fragment() {
             TimeZone.getTimeZone(currentTimeZone)
         }
         title.setText(timeZone.id)
-        //TODO implement offset.setText(timeZone)
+        offset.setText(OffsetConverter(timeZone.rawOffset.toLong()))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
