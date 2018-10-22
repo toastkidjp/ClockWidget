@@ -20,10 +20,13 @@ class ClockSettingsActivity : AppCompatActivity() {
 
     companion object {
 
-        fun makeIntent(context: Context): Intent {
-            val intent = Intent(context, ClockSettingsActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            return intent
-        }
+        /**
+         * Make this acitivity's starting intent.
+         *
+         * @param context [Context]
+         */
+        fun makeIntent(context: Context) =
+                Intent(context, ClockSettingsActivity::class.java)
+                        .also { it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP }
     }
 }
