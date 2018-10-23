@@ -37,7 +37,7 @@ class ClockSettingsActivity : AppCompatActivity() {
      * Initialize banner AD.
      */
     private fun initAd() {
-        MobileAds.initialize(this, "ca-app-pub-5751262573448755~6177129103")
+        MobileAds.initialize(this, getString(R.string.ad_app_id))
         initAdView()
         loadAd()
     }
@@ -48,7 +48,7 @@ class ClockSettingsActivity : AppCompatActivity() {
     private fun initAdView() {
         adView = AdView(this)
         adView.adSize = AdSize.BANNER
-        adView.adUnitId = "ca-app-pub-5751262573448755/7817513836"
+        adView.adUnitId = getString(R.string.ad_unit_id)
         ad_container.addView(adView)
     }
 

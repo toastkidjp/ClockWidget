@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">World Clock Widget</string>
     <string name="section_current">Current:</string>
+
+    <string name="ad_app_id">ca-app-pub-5751262573448755~6177129103</string>
+    <string name="ad_unit_id">ca-app-pub-5751262573448755/7817513836</string>
 </resources>
