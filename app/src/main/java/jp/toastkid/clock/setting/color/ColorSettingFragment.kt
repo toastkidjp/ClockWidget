@@ -1,0 +1,46 @@
+/*
+ * Copyright (c) 2018 toastkidjp.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompany this distribution.
+ * The Eclipse Public License is available at http://www.eclipse.org/legal/epl-v10.html.
+ */
+package jp.toastkid.clock.setting.color
+
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
+import jp.toastkid.clock.R
+import jp.toastkid.clock.appwidget.UpdateReceiver
+import jp.toastkid.clock.setting.PreferenceApplier
+import kotlinx.android.synthetic.main.fragment_color.*
+
+/**
+ * @author toastkidjp
+ */
+class ColorSettingFragment : Fragment() {
+
+    private var preferenceApplier: PreferenceApplier? = null
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_color, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        context?.let { preferenceApplier = PreferenceApplier(it) }
+
+        color_picker.setColorSelectionListener(object : SimpleColorSelectionListener() {
+            override fun onColorSelected(color: Int) {
+                preferenceApplier?.setFontColor(color)
+                context?.let { it.sendBroadcast(UpdateReceiver.makeIntent(it)) }
+            }
+        })
+        preferenceApplier?.let { color_picker.setColor(it.fontColor()) }
+    }
+}

@@ -8,6 +8,8 @@
 package jp.toastkid.clock.setting
 
 import android.content.Context
+import android.graphics.Color
+import android.support.annotation.ColorInt
 import android.text.TextUtils
 import java.util.*
 
@@ -20,7 +22,7 @@ class PreferenceApplier(context: Context) {
             context.getSharedPreferences(javaClass.canonicalName, Context.MODE_PRIVATE)
 
     enum class Key {
-        TIME_ZONE
+        TIME_ZONE, FONT_COLOR
     }
 
     fun currentTimeZone(): TimeZone = preferences.getString(Key.TIME_ZONE.name, "").let {
@@ -34,5 +36,12 @@ class PreferenceApplier(context: Context) {
 
     fun setTimeZone(timeZone: String) {
         preferences.edit().putString(Key.TIME_ZONE.name, timeZone).apply()
+    }
+
+    @ColorInt
+    fun fontColor() = preferences.getInt(Key.FONT_COLOR.name, Color.WHITE)
+
+    fun setFontColor(@ColorInt color: Int) {
+        preferences.edit().putInt(Key.FONT_COLOR.name, color).apply()
     }
 }

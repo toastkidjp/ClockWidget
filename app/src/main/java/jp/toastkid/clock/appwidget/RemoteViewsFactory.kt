@@ -31,12 +31,18 @@ object RemoteViewsFactory {
     operator fun invoke(context: Context): RemoteViews {
         val removeViews = RemoteViews(context.packageName, APPWIDGET_LAYOUT_ID)
         removeViews.setOnClickPendingIntent(R.id.background, PendingIntentFactory(context))
-        val currentTimeZone = PreferenceApplier(context).currentTimeZone()
+
+        val preferenceApplier = PreferenceApplier(context)
+
         val dateFormat = DATE_FORMAT.get()
+        val currentTimeZone = preferenceApplier.currentTimeZone()
         dateFormat.timeZone = currentTimeZone
         removeViews.setTextViewText(R.id.date_time, dateFormat.format(Date()))
         removeViews.setTextViewText(R.id.timezone, currentTimeZone.id)
-        println(Date())
+
+        val fontColor = preferenceApplier.fontColor()
+        removeViews.setTextColor(R.id.date_time, fontColor)
+        removeViews.setTextColor(R.id.timezone, fontColor)
         return removeViews
     }
 }

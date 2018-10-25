@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">World Clock Widget</string>
+    <string name="section_current">Current:</string>
 </resources>

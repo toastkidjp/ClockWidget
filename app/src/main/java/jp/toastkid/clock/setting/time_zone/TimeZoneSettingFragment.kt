@@ -22,7 +22,6 @@ import jp.toastkid.clock.appwidget.SingleWidgetProvider
 import jp.toastkid.clock.libs.OffsetConverter
 import jp.toastkid.clock.setting.PreferenceApplier
 import kotlinx.android.synthetic.main.fragment_time_zone.*
-import kotlinx.android.synthetic.main.item_time_zone.*
 import java.util.*
 
 /**

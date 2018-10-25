@@ -4,24 +4,28 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import jp.toastkid.clock.setting.time_zone.TimeZoneSettingFragment
+import kotlinx.android.synthetic.main.activity_setting_top.*
 
 class ClockSettingsActivity : AppCompatActivity() {
+
+    /**
+     * Contents pager's adapter.
+     */
+    private var pagerAdapter: SettingPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_setting_top)
 
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, TimeZoneSettingFragment())
-        transaction.commit()
+        pagerAdapter = SettingPagerAdapter(supportFragmentManager)
+        container?.adapter = pagerAdapter
     }
 
     companion object {
 
         /**
-         * Make this acitivity's starting intent.
+         * Make this [Activity]'s starting intent.
          *
          * @param context [Context]
          */
