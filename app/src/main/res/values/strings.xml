@@ -8,4 +8,5 @@
     <string name="menu_privacy_policy">Privacy policy</string>
     <string name="menu_exit">Exit</string>
     <string name="menu_placement">Place App Widget</string>
+    <string name="menu_date_time_settings">Date Time Settings</string>
 </resources>

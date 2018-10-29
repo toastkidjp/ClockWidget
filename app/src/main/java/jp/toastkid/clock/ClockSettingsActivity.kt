@@ -3,6 +3,7 @@ package jp.toastkid.clock
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -54,6 +55,10 @@ class ClockSettingsActivity : AppCompatActivity() {
                     if (appWidgetPlacer.isTargetOs()) {
                         appWidgetPlacer()
                     }
+                    true
+                }
+                R.id.menu_date_time -> {
+                    startActivity(Intent().also { it.action = Settings.ACTION_DATE_SETTINGS })
                     true
                 }
                 R.id.privacy_policy -> {
