@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">World Clock Widget</string>
     <string name="section_current">Current:</string>
+    <string name="message_implementing">Implementing...</string>
+    <string name="menu_color_settings">Color Settings</string>
+    <string name="menu_time_zone_settings">Time Zone Settings</string>
+    <string name="menu_license">License</string>
+    <string name="menu_privacy_policy">Privacy policy</string>
+    <string name="menu_exit">Exit</string>
 </resources>

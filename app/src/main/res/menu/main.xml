@@ -7,31 +7,31 @@
     <item
         android:id="@+id/menu_color"
         android:orderInCategory="100"
-        android:title="Color Settings"
+        android:title="@string/menu_color_settings"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/menu_time_zone"
         android:orderInCategory="100"
-        android:title="Time Zone Settings"
+        android:title="@string/menu_time_zone_settings"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/licenses"
         android:orderInCategory="100"
-        android:title="License"
+        android:title="@string/menu_license"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/privacy_policy"
         android:orderInCategory="100"
-        android:title="Privacy policy"
+        android:title="@string/menu_privacy_policy"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/exit"
         android:orderInCategory="100"
-        android:title="Exit"
+        android:title="@string/menu_exit"
         app:showAsAction="never"
         />
 </menu>

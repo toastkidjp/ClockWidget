@@ -48,7 +48,7 @@ class ClockSettingsActivity : AppCompatActivity() {
                 else -> {
                     Snackbar.make(
                             findViewById(android.R.id.content),
-                            "Implementing...",
+                            R.string.message_implementing,
                             Snackbar.LENGTH_SHORT
                     ).show()
                     super.onOptionsItemSelected(item)
