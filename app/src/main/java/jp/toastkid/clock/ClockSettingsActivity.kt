@@ -1,12 +1,16 @@
 package jp.toastkid.clock
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import jp.toastkid.clock.appwidget.SingleWidgetProvider
 import kotlinx.android.synthetic.main.activity_setting_top.*
 
 class ClockSettingsActivity : AppCompatActivity() {
@@ -28,6 +32,11 @@ class ClockSettingsActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
+        val appWidgetManager = AppWidgetManager.getInstance(this)
+        if (Build.VERSION_CODES.O <= Build.VERSION.SDK_INT
+                && appWidgetManager.isRequestPinAppWidgetSupported) {
+            menuInflater.inflate(R.menu.placement, menu)
+        }
         return true
     }
 
@@ -41,7 +50,19 @@ class ClockSettingsActivity : AppCompatActivity() {
                     container?.currentItem = 0
                     true
                 }
-                R.id.exit -> {
+                R.id.menu_placement -> {
+                    val appWidgetManager = AppWidgetManager.getInstance(this)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
+                            && appWidgetManager.isRequestPinAppWidgetSupported) {
+                        appWidgetManager.requestPinAppWidget(
+                                ComponentName.createRelative(this, SingleWidgetProvider::class.java.canonicalName),
+                                Bundle(),
+                                null
+                                )
+                    }
+                    true
+                }
+                R.id.menu_exit -> {
                     moveTaskToBack(true)
                     true
                 }
