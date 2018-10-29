@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import jp.toastkid.clock.appwidget.placement.AppWidgetPlacer
+import jp.toastkid.clock.libs.PrivacyPolicyLauncher
 import kotlinx.android.synthetic.main.activity_setting_top.*
 
 class ClockSettingsActivity : AppCompatActivity() {
@@ -53,6 +54,10 @@ class ClockSettingsActivity : AppCompatActivity() {
                     if (appWidgetPlacer.isTargetOs()) {
                         appWidgetPlacer()
                     }
+                    true
+                }
+                R.id.privacy_policy -> {
+                    PrivacyPolicyLauncher(this)
                     true
                 }
                 R.id.menu_exit -> {
