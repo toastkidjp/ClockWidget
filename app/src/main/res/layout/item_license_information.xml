@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     app:cardElevation="4dp"
     android:layout_margin="4dp"
+    android:foreground="@drawable/ripple"
     >
     <TextView
         android:id="@+id/title_license"
