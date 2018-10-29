@@ -1,16 +1,13 @@
 package jp.toastkid.clock
 
-import android.appwidget.AppWidgetManager
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import jp.toastkid.clock.appwidget.SingleWidgetProvider
+import jp.toastkid.clock.appwidget.placement.AppWidgetPlacer
 import kotlinx.android.synthetic.main.activity_setting_top.*
 
 class ClockSettingsActivity : AppCompatActivity() {
@@ -20,6 +17,8 @@ class ClockSettingsActivity : AppCompatActivity() {
      */
     private var pagerAdapter: SettingPagerAdapter? = null
 
+    private lateinit var appWidgetPlacer: AppWidgetPlacer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,14 +26,14 @@ class ClockSettingsActivity : AppCompatActivity() {
 
         pagerAdapter = SettingPagerAdapter(supportFragmentManager)
         container?.adapter = pagerAdapter
+
+        appWidgetPlacer = AppWidgetPlacer(this)
     }
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
-        val appWidgetManager = AppWidgetManager.getInstance(this)
-        if (Build.VERSION_CODES.O <= Build.VERSION.SDK_INT
-                && appWidgetManager.isRequestPinAppWidgetSupported) {
+        if (appWidgetPlacer.isTargetOs()) {
             menuInflater.inflate(R.menu.placement, menu)
         }
         return true
@@ -51,14 +50,8 @@ class ClockSettingsActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_placement -> {
-                    val appWidgetManager = AppWidgetManager.getInstance(this)
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
-                            && appWidgetManager.isRequestPinAppWidgetSupported) {
-                        appWidgetManager.requestPinAppWidget(
-                                ComponentName.createRelative(this, SingleWidgetProvider::class.java.canonicalName),
-                                Bundle(),
-                                null
-                                )
+                    if (appWidgetPlacer.isTargetOs()) {
+                        appWidgetPlacer()
                     }
                     true
                 }
