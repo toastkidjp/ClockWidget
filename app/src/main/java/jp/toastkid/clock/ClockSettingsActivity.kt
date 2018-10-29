@@ -60,6 +60,10 @@ class ClockSettingsActivity : AppCompatActivity() {
                     PrivacyPolicyLauncher(this)
                     true
                 }
+                R.id.menu_licenses -> {
+                    container?.currentItem = 2
+                    true
+                }
                 R.id.menu_exit -> {
                     moveTaskToBack(true)
                     true

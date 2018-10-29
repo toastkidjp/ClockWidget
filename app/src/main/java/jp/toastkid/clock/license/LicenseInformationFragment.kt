@@ -36,14 +36,14 @@ class LicenseInformationFragment : Fragment() {
         val assetManager = activityContext.assets
         val licenseDir = assetManager.list(DIRECTORY)
 
-        licenses.adapter = Adapter(licenseDir) {
+        menu_licenses.adapter = Adapter(licenseDir) {
             AlertDialog.Builder(activityContext)
                     .setTitle(ExtensionRemover(it))
                     .setMessage(readContent(assetManager, it))
                     .setPositiveButton("Close") { d, _ -> d.dismiss() }
                     .show()
         }
-        licenses.layoutManager = LinearLayoutManager(activityContext)
+        menu_licenses.layoutManager = LinearLayoutManager(activityContext)
     }
 
     private fun readContent(assetManager: AssetManager, fileName: String) =
