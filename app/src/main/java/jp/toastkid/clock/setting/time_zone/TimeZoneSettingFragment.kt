@@ -20,6 +20,7 @@ import jp.toastkid.clock.R
 import jp.toastkid.clock.appwidget.RemoteViewsFactory
 import jp.toastkid.clock.appwidget.SingleWidgetProvider
 import jp.toastkid.clock.libs.OffsetConverter
+import jp.toastkid.clock.libs.TitleProvider
 import jp.toastkid.clock.setting.PreferenceApplier
 import kotlinx.android.synthetic.main.fragment_time_zone.*
 import java.util.*
@@ -27,7 +28,7 @@ import java.util.*
 /**
  * @author toastkidjp
  */
-class TimeZoneSettingFragment : Fragment() {
+class TimeZoneSettingFragment : Fragment(), TitleProvider {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_time_zone, container, false)
@@ -80,4 +81,6 @@ class TimeZoneSettingFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+
+    override fun title() = "Time Zone Setting"
 }
