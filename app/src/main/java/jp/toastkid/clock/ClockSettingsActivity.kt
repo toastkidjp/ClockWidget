@@ -50,6 +50,10 @@ class ClockSettingsActivity : AppCompatActivity() {
 
         appWidgetPlacer = AppWidgetPlacer(this)
 
+        initToolbar()
+    }
+
+    private fun initToolbar() {
         setSupportActionBar(toolbar)
         toolbar.run {
             setNavigationIcon(R.drawable.ic_close)
@@ -58,7 +62,6 @@ class ClockSettingsActivity : AppCompatActivity() {
         }
         toolbar.overflowIcon?.let { DrawableCompat.setTint(it, Color.WHITE) }
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
