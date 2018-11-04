@@ -32,6 +32,7 @@ dependencies {
     implementation "androidx.browser:browser:${supportLibVersion}"
     implementation "androidx.cardview:cardview:${supportLibVersion}"
     implementation "androidx.core:core:${supportLibVersion}"
+    implementation 'androidx.core:core-ktx:1.0.0'
 
     implementation 'com.github.madrapps:pikolo:1.1.6'
     implementation 'com.squareup.okio:okio:1.16.0'
