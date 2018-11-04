@@ -9,12 +9,12 @@ package jp.toastkid.clock.license
 
 import android.content.res.AssetManager
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import jp.toastkid.clock.R
 import jp.toastkid.clock.libs.TitleProvider
 import kotlinx.android.synthetic.main.fragment_license_information.*

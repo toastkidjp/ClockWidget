@@ -6,12 +6,12 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.support.design.widget.Snackbar
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.snackbar.Snackbar
 import jp.toastkid.clock.appwidget.placement.AppWidgetPlacer
 import jp.toastkid.clock.libs.PrivacyPolicyLauncher
 import kotlinx.android.synthetic.main.activity_setting_top.*

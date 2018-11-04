@@ -7,9 +7,9 @@
  */
 package jp.toastkid.clock.setting.time_zone
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import jp.toastkid.clock.R
 import jp.toastkid.clock.libs.OffsetConverter
 

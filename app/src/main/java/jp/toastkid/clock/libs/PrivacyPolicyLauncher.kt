@@ -2,8 +2,8 @@ package jp.toastkid.clock.libs
 
 import android.content.Context
 import android.net.Uri
-import android.support.customtabs.CustomTabsIntent
-import android.support.v4.content.ContextCompat
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import jp.toastkid.clock.R
 
 /**
