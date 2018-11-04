@@ -31,6 +31,14 @@ class ClockSettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting_top)
 
         pagerAdapter = SettingPagerAdapter(supportFragmentManager)
+        initViewPager()
+
+        appWidgetPlacer = AppWidgetPlacer(this)
+
+        initToolbar()
+    }
+
+    private fun initViewPager() {
         container?.also {
             it.adapter = pagerAdapter
             it.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -47,10 +55,6 @@ class ClockSettingsActivity : AppCompatActivity() {
                 }
             })
         }
-
-        appWidgetPlacer = AppWidgetPlacer(this)
-
-        initToolbar()
     }
 
     private fun initToolbar() {
