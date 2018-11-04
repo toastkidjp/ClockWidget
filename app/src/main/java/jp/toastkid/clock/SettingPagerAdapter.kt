@@ -18,7 +18,7 @@ class SettingPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int = fragments.size
 
-    override fun getItem(position: Int): Fragment = fragments.get(position)
+    override fun getItem(position: Int): Fragment = fragments[position]
 
     override fun getPageTitle(position: Int): CharSequence? {
         val fragment = getItem(position)
