@@ -9,6 +9,10 @@ import android.view.Menu
 import android.view.MenuItem
 import jp.toastkid.clock.appwidget.placement.AppWidgetPlacer
 import jp.toastkid.clock.libs.PrivacyPolicyLauncher
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_setting_top.*
 
 class ClockSettingsActivity : AppCompatActivity() {
@@ -20,6 +24,11 @@ class ClockSettingsActivity : AppCompatActivity() {
 
     private lateinit var appWidgetPlacer: AppWidgetPlacer
 
+    /**
+     * AD view.
+     */
+    private lateinit var adView: AdView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,6 +38,7 @@ class ClockSettingsActivity : AppCompatActivity() {
         container?.adapter = pagerAdapter
 
         appWidgetPlacer = AppWidgetPlacer(this)
+        initAd()
     }
 
 
@@ -38,6 +48,41 @@ class ClockSettingsActivity : AppCompatActivity() {
             menuInflater.inflate(R.menu.placement, menu)
         }
         return true
+    }
+
+    /**
+     * Initialize banner AD.
+     */
+    private fun initAd() {
+        MobileAds.initialize(this, getString(R.string.ad_app_id))
+        initAdView()
+        loadAd()
+    }
+
+    /**
+     * Initialize AdView.
+     */
+    private fun initAdView() {
+        adView = AdView(this)
+        adView.adSize = AdSize.BANNER
+        adView.adUnitId = getString(R.string.ad_unit_id)
+        ad_container.addView(adView)
+    }
+
+    /**
+     * Load AD.
+     */
+    private fun loadAd() {
+        adView.loadAd(
+                AdRequest.Builder()
+                        .addTestDevice("B4F1033D07067316E4ED247D9F18E7D7")
+                        .build()
+        )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        adView.destroy()
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
