@@ -3,7 +3,12 @@ package jp.toastkid.clock
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
+import jp.toastkid.clock.appwidget.placement.AppWidgetPlacer
+import jp.toastkid.clock.libs.PrivacyPolicyLauncher
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
@@ -16,6 +21,8 @@ class ClockSettingsActivity : AppCompatActivity() {
      * Contents pager's adapter.
      */
     private var pagerAdapter: SettingPagerAdapter? = null
+
+    private lateinit var appWidgetPlacer: AppWidgetPlacer
 
     /**
      * AD view.
@@ -30,7 +37,17 @@ class ClockSettingsActivity : AppCompatActivity() {
         pagerAdapter = SettingPagerAdapter(supportFragmentManager)
         container?.adapter = pagerAdapter
 
+        appWidgetPlacer = AppWidgetPlacer(this)
         initAd()
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        if (appWidgetPlacer.isTargetOs()) {
+            menuInflater.inflate(R.menu.placement, menu)
+        }
+        return true
     }
 
     /**
@@ -67,6 +84,40 @@ class ClockSettingsActivity : AppCompatActivity() {
         super.onDestroy()
         adView.destroy()
     }
+
+    override fun onOptionsItemSelected(item: MenuItem) =
+            when (item.itemId) {
+                R.id.menu_color -> {
+                    container?.currentItem = 1
+                    true
+                }
+                R.id.menu_time_zone -> {
+                    container?.currentItem = 0
+                    true
+                }
+                R.id.menu_placement -> {
+                    if (appWidgetPlacer.isTargetOs()) {
+                        appWidgetPlacer()
+                    }
+                    true
+                }
+                R.id.privacy_policy -> {
+                    PrivacyPolicyLauncher(this)
+                    true
+                }
+                R.id.menu_exit -> {
+                    moveTaskToBack(true)
+                    true
+                }
+                else -> {
+                    Snackbar.make(
+                            findViewById(android.R.id.content),
+                            R.string.message_implementing,
+                            Snackbar.LENGTH_SHORT
+                    ).show()
+                    super.onOptionsItemSelected(item)
+                }
+            }
 
     companion object {
 
