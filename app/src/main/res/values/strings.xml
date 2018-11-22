@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">World Clock Widget</string>
     <string name="section_current">Current:</string>
+
     <string name="message_implementing">Implementing...</string>
     <string name="menu_color_settings">Color Settings</string>
     <string name="menu_time_zone_settings">Time Zone Settings</string>
@@ -8,5 +9,10 @@
     <string name="menu_privacy_policy">Privacy policy</string>
     <string name="menu_exit">Exit</string>
     <string name="menu_placement">Place App Widget</string>
+
     <string name="menu_date_time_settings">Date Time Settings</string>
+
+    <string name="ad_app_id">ca-app-pub-5751262573448755~6177129103</string>
+    <string name="ad_unit_id">ca-app-pub-5751262573448755/7817513836</string>
+
 </resources>

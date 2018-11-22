@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5751262573448755~6177129103"
+            />
+
         <activity
             android:name=".ClockSettingsActivity"
             android:label="@string/app_name">
