@@ -12,3 +12,4 @@
 .idea/
 cmd.lnk
 gradle/
+app/google-services.json
