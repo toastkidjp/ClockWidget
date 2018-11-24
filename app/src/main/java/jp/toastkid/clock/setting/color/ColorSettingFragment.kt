@@ -8,10 +8,11 @@
 package jp.toastkid.clock.setting.color
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
 import jp.toastkid.clock.R
 import jp.toastkid.clock.appwidget.UpdateReceiver
@@ -39,7 +40,10 @@ class ColorSettingFragment : Fragment(), TitleProvider {
         color_picker.setColorSelectionListener(object : SimpleColorSelectionListener() {
             override fun onColorSelected(color: Int) {
                 preferenceApplier?.setFontColor(color)
-                context?.let { it.sendBroadcast(UpdateReceiver.makeIntent(it)) }
+                context?.let {
+                    LocalBroadcastManager.getInstance(it)
+                            .sendBroadcast(UpdateReceiver.makeIntent(it))
+                }
             }
         })
         preferenceApplier?.let { color_picker.setColor(it.fontColor()) }
