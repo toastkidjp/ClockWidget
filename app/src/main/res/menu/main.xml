@@ -35,6 +35,12 @@
         app:showAsAction="never"
         />
     <item
+        android:id="@+id/menu_version"
+        android:orderInCategory="100"
+        android:title="@null"
+        app:showAsAction="never"
+        />
+    <item
         android:id="@+id/menu_exit"
         android:orderInCategory="100"
         android:title="@string/menu_exit"

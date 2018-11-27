@@ -2,6 +2,7 @@ package jp.toastkid.clock
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.support.design.widget.Snackbar
@@ -48,6 +49,7 @@ class ClockSettingsActivity : AppCompatActivity() {
         if (appWidgetPlacer.isTargetOs()) {
             menuInflater.inflate(R.menu.placement, menu)
         }
+        menu.findItem(R.id.menu_version)?.title = "App Version: ${BuildConfig.VERSION_NAME}"
         return true
     }
 
@@ -112,6 +114,14 @@ class ClockSettingsActivity : AppCompatActivity() {
                 }
                 R.id.menu_licenses -> {
                     container?.currentItem = 2
+                    true
+                }
+                R.id.menu_version -> {
+                    startActivity(
+                            Intent(Intent.ACTION_VIEW).also {
+                                it.data = Uri.parse("market://details?id=jp.toastkid.clock")
+                            }
+                    )
                     true
                 }
                 R.id.menu_exit -> {
