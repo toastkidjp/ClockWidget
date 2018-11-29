@@ -2,10 +2,13 @@ package jp.toastkid.clock
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.support.design.widget.Snackbar
+import android.support.v4.graphics.drawable.DrawableCompat
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -37,12 +40,42 @@ class ClockSettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting_top)
 
         pagerAdapter = SettingPagerAdapter(supportFragmentManager)
-        container?.adapter = pagerAdapter
+        initViewPager()
 
         appWidgetPlacer = AppWidgetPlacer(this)
+
+        initToolbar()
         initAd()
     }
 
+    private fun initViewPager() {
+        container?.also {
+            it.adapter = pagerAdapter
+            it.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrollStateChanged(state: Int) = Unit
+
+                override fun onPageScrolled(
+                        position: Int,
+                        positionOffset: Float,
+                        positionOffsetPixels: Int
+                ) = Unit
+
+                override fun onPageSelected(position: Int) {
+                    toolbar.title = pagerAdapter?.getPageTitle(position)
+                }
+            })
+        }
+    }
+
+    private fun initToolbar() {
+        setSupportActionBar(toolbar)
+        toolbar.run {
+            setNavigationIcon(R.drawable.ic_close)
+            setNavigationOnClickListener { finish() }
+            setTitleTextColor(Color.WHITE)
+        }
+        toolbar.overflowIcon?.let { DrawableCompat.setTint(it, Color.WHITE) }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)

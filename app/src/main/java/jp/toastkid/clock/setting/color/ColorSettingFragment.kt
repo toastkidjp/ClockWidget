@@ -15,13 +15,14 @@ import android.view.ViewGroup
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
 import jp.toastkid.clock.R
 import jp.toastkid.clock.appwidget.UpdateReceiver
+import jp.toastkid.clock.libs.TitleProvider
 import jp.toastkid.clock.setting.PreferenceApplier
 import kotlinx.android.synthetic.main.fragment_color.*
 
 /**
  * @author toastkidjp
  */
-class ColorSettingFragment : Fragment() {
+class ColorSettingFragment : Fragment(), TitleProvider {
 
     private var preferenceApplier: PreferenceApplier? = null
 
@@ -43,4 +44,7 @@ class ColorSettingFragment : Fragment() {
         })
         preferenceApplier?.let { color_picker.setColor(it.fontColor()) }
     }
+
+    override fun title() = "Font color setting"
+
 }

@@ -16,13 +16,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import jp.toastkid.clock.R
+import jp.toastkid.clock.libs.TitleProvider
 import kotlinx.android.synthetic.main.fragment_license_information.*
 import okio.Okio
 
 /**
  * @author toastkidjp
  */
-class LicenseInformationFragment : Fragment() {
+class LicenseInformationFragment : Fragment(), TitleProvider {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_license_information, container, false)
@@ -49,6 +50,8 @@ class LicenseInformationFragment : Fragment() {
     private fun readContent(assetManager: AssetManager, fileName: String) =
             Okio.buffer(Okio.source(assetManager.open("$DIRECTORY/$fileName")))
                     .use { it.readUtf8() }
+
+    override fun title() = "License Information"
 
     companion object {
         private const val DIRECTORY = "licenses"
