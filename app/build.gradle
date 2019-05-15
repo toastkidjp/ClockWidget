@@ -9,9 +9,9 @@ android {
         applicationId "jp.toastkid.clock"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionCode 2
+        versionName "0.0.2"
     }
     buildTypes {
         release {
@@ -37,8 +37,9 @@ dependencies {
     implementation 'com.github.madrapps:pikolo:1.1.6'
     implementation 'com.squareup.okio:okio:1.16.0'
 
-    implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.android.gms:play-services-ads:17.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
