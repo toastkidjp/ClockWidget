@@ -3,15 +3,15 @@ package jp.toastkid.clock
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.support.design.widget.Snackbar
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.net.toUri
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.snackbar.Snackbar
 import jp.toastkid.clock.appwidget.placement.AppWidgetPlacer
 import jp.toastkid.clock.libs.PrivacyPolicyLauncher
 import com.google.android.gms.ads.AdRequest
@@ -152,7 +152,7 @@ class ClockSettingsActivity : AppCompatActivity() {
                 R.id.menu_version -> {
                     startActivity(
                             Intent(Intent.ACTION_VIEW).also {
-                                it.data = Uri.parse("market://details?id=jp.toastkid.clock")
+                                it.data = "market://details?id=jp.toastkid.clock".toUri()
                             }
                     )
                     true

@@ -1,8 +1,8 @@
 package jp.toastkid.clock
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import jp.toastkid.clock.libs.TitleProvider
 import jp.toastkid.clock.license.LicenseInformationFragment
 import jp.toastkid.clock.setting.color.ColorSettingFragment

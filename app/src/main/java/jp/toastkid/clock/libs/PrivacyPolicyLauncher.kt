@@ -1,9 +1,9 @@
 package jp.toastkid.clock.libs
 
 import android.content.Context
-import android.net.Uri
-import android.support.customtabs.CustomTabsIntent
-import android.support.v4.content.ContextCompat
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import jp.toastkid.clock.R
 
 /**
@@ -11,7 +11,7 @@ import jp.toastkid.clock.R
  */
 object PrivacyPolicyLauncher {
 
-    private val URI = Uri.parse("https://tmblr.co/ZDG7Be2NVdctY")
+    private val URI = "https://tmblr.co/ZDG7Be2NVdctY".toUri()
 
     operator fun invoke(context: Context) = CustomTabsIntent.Builder()
             .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))

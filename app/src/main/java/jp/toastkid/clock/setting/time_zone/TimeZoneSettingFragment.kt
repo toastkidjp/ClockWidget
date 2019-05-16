@@ -8,14 +8,15 @@
 package jp.toastkid.clock.setting.time_zone
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import jp.toastkid.clock.R
 import jp.toastkid.clock.appwidget.RemoteViewsFactory
 import jp.toastkid.clock.appwidget.SingleWidgetProvider
@@ -49,7 +50,7 @@ class TimeZoneSettingFragment : Fragment(), TitleProvider {
 
         time_zones.adapter = adapter
         time_zones.layoutManager =
-                LinearLayoutManager(activityContext, LinearLayoutManager.VERTICAL, false)
+                LinearLayoutManager(activityContext, RecyclerView.VERTICAL, false)
 
         filter.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
