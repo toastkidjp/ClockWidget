@@ -27,7 +27,7 @@ dependencies {
 
     implementation "com.android.support:design:28.0.0"
 
-    def androidXVersion = '1.0.0'
+    def androidXVersion = '1.0.2'
     implementation "androidx.appcompat:appcompat:${androidXVersion}"
     implementation "androidx.browser:browser:${androidXVersion}"
     implementation "androidx.cardview:cardview:${androidXVersion}"
