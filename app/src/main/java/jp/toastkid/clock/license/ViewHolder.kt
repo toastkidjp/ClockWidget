@@ -11,7 +11,9 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 /**
+ * License list item view holder.
+ *
+ * @param view [View]
  * @author toastkidjp
  */
-class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-}
+class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
