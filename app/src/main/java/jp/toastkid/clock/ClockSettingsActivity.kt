@@ -11,13 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.net.toUri
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.snackbar.Snackbar
-import jp.toastkid.clock.appwidget.placement.AppWidgetPlacer
-import jp.toastkid.clock.libs.PrivacyPolicyLauncher
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.google.android.material.snackbar.Snackbar
+import jp.toastkid.clock.appwidget.placement.AppWidgetPlacer
+import jp.toastkid.clock.libs.PrivacyPolicyLauncher
 import kotlinx.android.synthetic.main.activity_setting_top.*
 
 class ClockSettingsActivity : AppCompatActivity() {
@@ -27,7 +27,7 @@ class ClockSettingsActivity : AppCompatActivity() {
      */
     private var pagerAdapter: SettingPagerAdapter? = null
 
-    private lateinit var appWidgetPlacer: AppWidgetPlacer
+    private var appWidgetPlacer: AppWidgetPlacer? = null
 
     /**
      * AD view.
@@ -79,7 +79,7 @@ class ClockSettingsActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
-        if (appWidgetPlacer.isTargetOs()) {
+        if (appWidgetPlacer?.isTargetOs() == true) {
             menuInflater.inflate(R.menu.placement, menu)
         }
         menu.findItem(R.id.menu_version)?.title = "App Version: ${BuildConfig.VERSION_NAME}"
@@ -132,9 +132,7 @@ class ClockSettingsActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_placement -> {
-                    if (appWidgetPlacer.isTargetOs()) {
-                        appWidgetPlacer()
-                    }
+                    appWidgetPlacer?.takeIf { it.isTargetOs() }?.invoke()
                     true
                 }
                 R.id.menu_date_time -> {
