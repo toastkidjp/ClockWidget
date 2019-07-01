@@ -38,7 +38,7 @@ dependencies {
     implementation 'com.github.madrapps:pikolo:1.1.6'
     implementation 'com.squareup.okio:okio:1.16.0'
 
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.0'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.google.android.gms:play-services-ads:17.2.0'
 
