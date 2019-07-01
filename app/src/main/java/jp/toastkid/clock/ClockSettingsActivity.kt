@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.net.toUri
@@ -62,6 +63,7 @@ class ClockSettingsActivity : AppCompatActivity() {
 
                 override fun onPageSelected(position: Int) {
                     toolbar.title = pagerAdapter?.getPageTitle(position)
+                    ad_container.visibility = if (position != 0) View.VISIBLE else View.GONE
                 }
             })
         }
