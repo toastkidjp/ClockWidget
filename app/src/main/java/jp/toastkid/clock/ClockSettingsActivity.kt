@@ -30,6 +30,8 @@ class ClockSettingsActivity : AppCompatActivity() {
 
     private var appWidgetPlacer: AppWidgetPlacer? = null
 
+    private var adHeight: Float = 0f
+
     /**
      * AD view.
      */
@@ -47,6 +49,9 @@ class ClockSettingsActivity : AppCompatActivity() {
 
         initToolbar()
         initAd()
+
+        adHeight = resources.getDimension(R.dimen.ad_height)
+        hideAd()
     }
 
     private fun initViewPager() {
@@ -63,9 +68,40 @@ class ClockSettingsActivity : AppCompatActivity() {
 
                 override fun onPageSelected(position: Int) {
                     toolbar.title = pagerAdapter?.getPageTitle(position)
-                    ad_container.visibility = if (position != 0) View.VISIBLE else View.GONE
+
+                    if (position != 0) {
+                        showAd()
+                    } else {
+                        hideAd()
+                    }
                 }
             })
+        }
+    }
+
+    fun showAd() {
+        ad_container.animate()?.let {
+            it.cancel()
+            it.translationY(0f)
+                    .alpha(1f)
+                    .setDuration(300L)
+                    .withStartAction {
+                        ad_container.visibility = View.VISIBLE
+                    }
+                    .start()
+        }
+    }
+
+    fun hideAd() {
+        ad_container.animate()?.let {
+            it.cancel()
+            it.translationY(-adHeight)
+                    .alpha(0f)
+                    .setDuration(300L)
+                    .withEndAction {
+                        ad_container.visibility = View.GONE
+                    }
+                    .start()
         }
     }
 
