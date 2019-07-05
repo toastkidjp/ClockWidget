@@ -31,11 +31,13 @@ import java.util.*
  */
 class TimeZoneSettingFragment : Fragment(), TitleProvider {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_time_zone, container, false)
-    }
-
     private lateinit var adapter: Adapter
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.fragment_time_zone, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,7 +55,12 @@ class TimeZoneSettingFragment : Fragment(), TitleProvider {
                 LinearLayoutManager(activityContext, RecyclerView.VERTICAL, false)
 
         filter.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+            override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+            ) = Unit
 
             override fun afterTextChanged(s: Editable?) = Unit
 
