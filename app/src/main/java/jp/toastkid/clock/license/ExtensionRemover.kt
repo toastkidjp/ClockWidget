@@ -1,7 +1,8 @@
 package jp.toastkid.clock.license
 
 /**
- * TODO implement test
+ * File extension remover.
+ *
  * @author toastkidjp
  */
 object ExtensionRemover {
