@@ -174,7 +174,7 @@ class ClockSettingsActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_date_time -> {
-                    startActivity(Intent().also { it.action = Settings.ACTION_DATE_SETTINGS })
+                    startActivity(Intent(Settings.ACTION_DATE_SETTINGS))
                     true
                 }
                 R.id.privacy_policy -> {
