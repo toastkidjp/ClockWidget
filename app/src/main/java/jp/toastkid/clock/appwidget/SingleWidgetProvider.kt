@@ -27,19 +27,23 @@ class SingleWidgetProvider : AppWidgetProvider() {
             appWidgetManager: AppWidgetManager,
             appWidgetIds: IntArray
     ) {
-        val alarmManager: AlarmManager = context.getSystemService(ALARM_SERVICE)
-                as? AlarmManager ?: return
-        val calendar = Calendar.getInstance()
-        calendar.add(Calendar.MINUTE, 1)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
+        val alarmManager: AlarmManager =
+                context.getSystemService(ALARM_SERVICE) as? AlarmManager ?: return
         alarmManager.setRepeating(
                 AlarmManager.RTC,
-                calendar.timeInMillis,
+                nextInvocationTime(),
                 oneMinute,
                 UpdateReceiver.makePendingIntent(context)
         )
         updateWidget(context, RemoteViewsFactory(context))
+    }
+
+    private fun nextInvocationTime(): Long {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.MINUTE, 1)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+        return calendar.timeInMillis
     }
 
     companion object {
